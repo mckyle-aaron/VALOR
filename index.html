@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALOR - For Athletes. By Athletes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-black: #0A0A0A;
+            --secondary-black: #141414;
+            --primary-white: #FFFFFF;
+            --accent-blue: #00D4FF;
+            --muted-steel: #8D99AE;
+            --electric-blue: #118AB2;
+            --silver-primary: #E8E8E8;
+            --silver-secondary: #C0C0C0;
+            --silver-accent: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--silver-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--silver-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--accent-blue);
+            color: var(--primary-black);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #00B8E0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--silver-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: var(--silver-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(232, 232, 232, 0.3);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted-steel);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--silver-primary);
+            border: 1px solid var(--muted-steel);
+            padding: 12px 25px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted-steel);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            padding: 60px 0;
+            background-color: var(--secondary-black);
+        }
+
+        .social-proof h2 {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--muted-steel);
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .logo-item {
+            font-weight: 700;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            color: var(--silver-secondary);
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+            color: var(--silver-primary);
+        }
+
+        .testimonial {
+            max-width: 700px;
+            margin: 40px auto 0;
+            text-align: center;
+            font-style: italic;
+            color: var(--muted-steel);
+            border-left: 2px solid var(--accent-blue);
+            padding-left: 20px;
+        }
+
+        .testimonial-author {
+            margin-top: 15px;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--silver-primary);
+        }
+
+        /* Pillars Section */
+        .pillars {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+            background: var(--silver-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pillars-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .pillar-card {
+            display: flex;
+            background-color: var(--secondary-black);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            border: 1px solid rgba(200, 200, 200, 0.1);
+        }
+
+        .pillar-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .pillar-icon {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 212, 255, 0.1);
+            font-size: 40px;
+            color: var(--accent-blue);
+        }
+
+        .pillar-content {
+            padding: 40px;
+            flex: 1;
+        }
+
+        .pillar-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--silver-primary);
+        }
+
+        .pillar-content p {
+            color: var(--muted-steel);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--secondary-black);
+        }
+
+        .features-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .phone-mockup {
+            flex: 1;
+            position: relative;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid rgba(200, 200, 200, 0.2);
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background-color: var(--primary-black);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .screen-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+            color: var(--silver-primary);
+        }
+
+        .screen-content.active {
+            opacity: 1;
+        }
+
+        .screen-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--silver-primary);
+        }
+
+        .screen-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--muted-steel);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background-color: var(--accent-blue);
+            transform: scale(1.2);
+        }
+
+        .features-content {
+            flex: 1;
+        }
+
+        .features-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 30px;
+            background: var(--silver-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .features-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            color: var(--accent-blue);
+            margin-right: 15px;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .feature-text h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--silver-primary);
+        }
+
+        .feature-text p {
+            color: var(--muted-steel);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+        }
+
+        .cta-container {
+            display: flex;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(200, 200, 200, 0.1);
+        }
+
+        .cta-left {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .cta-right {
+            flex: 1;
+            background-color: var(--secondary-black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+        }
+
+        .cta-left h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: var(--silver-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-left p {
+            color: var(--muted-steel);
+            font-size: 1.1rem;
+        }
+
+        .cta-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--silver-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-black);
+            border: 1px solid var(--muted-steel);
+            border-radius: 4px;
+            color: var(--silver-primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: var(--muted-steel);
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-black);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(200, 200, 200, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--silver-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--muted-steel);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(141, 153, 174, 0.2);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo-img {
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .app-badges {
+            display: flex;
+            gap: 15px;
+        }
+
+        .app-badge {
+            height: 40px;
+            filter: grayscale(1) brightness(2);
+            transition: filter 0.3s ease;
+        }
+
+        .app-badge:hover {
+            filter: grayscale(0) brightness(1);
+        }
+
+        .copyright {
+            color: var(--muted-steel);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-container {
+                flex-direction: column;
+            }
+            
+            .phone-mockup {
+                width: 300px;
+                height: 600px;
+                margin: 0 auto;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .cta-left, .cta-right {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pillar-card {
+                flex-direction: column;
+            }
+            
+            .pillar-icon {
+                width: 100%;
+                height: 80px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-left h2, .features-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-left, .cta-right {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="images/valor-logo-white-trans.png" alt="VALOR" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <a href="#cta" class="cta-button">JOIN THE RANKS</a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>VALOR IS FORGED IN THE FIRE OF DAILY DISCIPLINE.</h1>
+            <p>Your mind is your greatest weapon. Your body, its instrument. VALOR is the ecosystem where you track, train, and transcend.</p>
+            <div class="hero-buttons">
+                <a href="#cta" class="cta-button">JOIN THE RANKS</a>
+                <a href="#features" class="secondary-button">Learn More <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>Featured In</h2>
+            <div class="logos">
+                <div class="logo-item">MEN'S HEALTH</div>
+                <div class="logo-item">FORBES</div>
+                <div class="logo-item">THE ATHLETIC</div>
+                <div class="logo-item">GQ</div>
+            </div>
+            <div class="testimonial">
+                "VALOR has redefined digital fitness. It's the operating system for the modern disciplined mind."
+                <div class="testimonial-author">- Jocko Willink</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section class="pillars" id="features">
+        <div class="container">
+            <h2 class="section-title">THE THREE PILLARS OF VALOR</h2>
+            <div class="pillars-container">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="pillar-content">
+                        <h3>TRACK WITH PURPOSE</h3>
+                        <p>Log workouts, monitor vitals, and analyze performance with Strava-level precision. Every data point is a step toward mastery.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="pillar-content">
+                        <h3>TRAIN WITH STRUCTURE</h3>
+                        <p>Access a library of "Playlists" from elite coaches. Hypertrophy, marathon training, stoic mindfulness—all modular, all adaptive.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="pillar-content">
+                        <h3>TRANSCEND WITH THE TRIBE</h3>
+                        <p>Compete on leaderboards, share victories, and uphold streaks. Find accountability in a community built on honor, not hype.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container features-container">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="screen-content active" id="screen1">
+                        <h3>Workout Playlists</h3>
+                        <p>Curated training programs tailored to your goals.</p>
+                    </div>
+                    <div class="screen-content" id="screen2">
+                        <h3>Performance Analytics</h3>
+                        <p>Track your progress with detailed metrics and insights.</p>
+                    </div>
+                    <div class="screen-content" id="screen3">
+                        <h3>Community Feed</h3>
+                        <p>Connect with like-minded individuals on the same path.</p>
+                    </div>
+                    <div class="screen-nav">
+                        <div class="nav-dot active" data-screen="1"></div>
+                        <div class="nav-dot" data-screen="2"></div>
+                        <div class="nav-dot" data-screen="3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="features-content">
+                <h2>THE TOOLS OF THE MODERN WARRIOR</h2>
+                <ul class="features-list">
+                    <li>
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Gamified Progression</h4>
+                            <p>Build your streak, earn XP, and unlock badges that signify real achievement.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Stoic Principles</h4>
+                            <p>Daily meditations and challenges focused on resilience, virtue, and mental fortitude.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Seamless Social</h4>
+                            <p>Connect, share, and compete without the noise. This is your inner circle.</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="#cta" class="cta-button">GET EARLY ACCESS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-container">
+                <div class="cta-left">
+                    <div>
+                        <h2>STOP SCROLLING. START BUILDING.</h2>
+                        <p>The path to self-mastery begins with a single decision. Yours is now.</p>
+                    </div>
+                </div>
+                <div class="cta-right">
+                    <div class="cta-form">
+                        <div class="form-group">
+                            <label for="email">ENTER YOUR EMAIL</label>
+                            <input type="email" id="email" placeholder="recruit@valor.com">
+                        </div>
+                        <button class="cta-button" style="width: 100%;">ENLIST NOW</button>
+                        <p class="form-note">Be the first to access. App Store & Google Play pre-registration available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="images/valor-logo-white-trans.png" alt="VALOR" class="footer-logo-img">
+                    </div>
+                    <p style="color: var(--muted-steel); margin-top: 15px;">© 2024 VALOR. FORGE YOUR LEGACY.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Programs</a></li>
+                        <li><a href="#">Premium</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="app-badges">
+                    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="app-badge">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="app-badge">
+                </div>
+                <div class="copyright">
+                    &copy; 2025 VALOR. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.pillar-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        // Check on page load
+        checkVisibility();
+
+        // Phone screen navigation
+        const navDots = document.querySelectorAll('.nav-dot');
+        const screenContents = document.querySelectorAll('.screen-content');
+        
+        navDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const screenId = this.getAttribute('data-screen');
+                
+                // Update active dot
+                navDots.forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active screen
+                screenContents.forEach(screen => screen.classList.remove('active'));
+                document.getElementById(`screen${screenId}`).classList.add('active');
+            });
+        });
+
+        // Auto-rotate phone screens
+        let currentScreen = 1;
+        setInterval(() => {
+            currentScreen = currentScreen < 3 ? currentScreen + 1 : 1;
+            
+            // Update active dot
+            navDots.forEach(d => d.classList.remove('active'));
+            document.querySelector(`.nav-dot[data-screen="${currentScreen}"]`).classList.add('active');
+            
+            // Update active screen
+            screenContents.forEach(screen => screen.classList.remove('active'));
+            document.getElementById(`screen${currentScreen}`).classList.add('active');
+        }, 4000);
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
