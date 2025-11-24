@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VALOR - For Athletes. By Athletes</title>
+    
+    <!-- Favicon & Site Icons with VALOR Logo -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/valor-logo-white-trans.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/valor-logo-white-trans.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/valor-logo-white-trans.png">
+    <link rel="shortcut icon" href="images/valor-logo-white-trans.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00d4ff">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- Additional Meta Tags for Better Branding -->
+    <meta name="description" content="VALOR - Forge your legacy. Track, train, and transcend with the ultimate athletic performance platform.">
+    <meta name="keywords" content="fitness, training, athletes, performance, workout, discipline, valor">
+    <meta property="og:title" content="VALOR - For Athletes. By Athletes">
+    <meta property="og:description" content="Forge your legacy with VALOR - the ultimate athletic performance platform.">
+    <meta property="og:image" content="images/valor-logo-white-trans.png">
+    <meta property="og:url" content="https://valor.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,6 +43,262 @@
             --premium-gold-light: #FFF9C4;
         }
 
+        /* === BADASS LOADING SCREEN === */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .loading-screen.loaded {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        .valor-logo-loading {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
+            opacity: 0;
+            animation: logoAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .loading-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--silver-primary) 0%, var(--accent-blue) 50%, var(--silver-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .loading-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--muted-steel);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: subtitleAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-weight: 500;
+        }
+
+        .loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            animation: containerAppear 1s ease 0.8s forwards;
+        }
+
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--electric-blue) 50%, var(--accent-blue) 100%);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        .loading-percentage {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            margin-top: 15px;
+            opacity: 0;
+            animation: percentageAppear 1s ease 1s forwards;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        .loading-quote {
+            position: absolute;
+            bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            color: var(--muted-steel);
+            font-size: 1rem;
+            text-align: center;
+            max-width: 500px;
+            opacity: 0;
+            animation: quoteAppear 1.2s ease 1.5s forwards;
+            line-height: 1.6;
+        }
+
+        .loading-quote::before {
+            content: '"';
+        }
+
+        .loading-quote::after {
+            content: '"';
+        }
+
+        /* Background Effects */
+        .loading-bg-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            animation: bgPulse 4s ease-in-out infinite;
+        }
+
+        .loading-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 3s linear infinite;
+        }
+
+        /* Loading Animations */
+        @keyframes logoAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotate(-10deg);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes titleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subtitleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes containerAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes percentageAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes quoteAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes bgPulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* === YOUR EXISTING STYLES === */
         * {
             margin: 0;
             padding: 0;
@@ -36,10 +311,7 @@
             color: var(--silver-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: transform 0.4s ease;
         }
-
-
 
         .container {
             max-width: 1200px;
@@ -1182,6 +1454,19 @@
                 font-size: 0.6rem;
                 padding: 4px 12px;
             }
+
+            /* Loading screen mobile adjustments */
+            .loading-title {
+                font-size: 2.5rem;
+            }
+            
+            .loading-subtitle {
+                font-size: 1rem;
+            }
+            
+            .loading-bar-container {
+                width: 250px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1204,297 +1489,426 @@
             .footer-container {
                 flex-direction: column;
             }
+
+            /* Loading screen mobile adjustments */
+            .loading-title {
+                font-size: 2rem;
+            }
+            
+            .valor-logo-loading {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .loading-bar-container {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Mobile Sidebar Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-header">
-            <img src="images/valor-logo-white-trans.png" alt="VALOR" class="mobile-nav-logo">
-            <div class="mobile-close" id="mobileClose">
-                <i class="fas fa-times"></i>
-            </div>
+    <!-- BADASS LOADING SCREEN -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-bg-effect"></div>
+        <div class="loading-particles" id="particlesContainer"></div>
+        
+        <img src="images/valor-logo-white-trans.png" alt="VALOR" class="valor-logo-loading">
+        <h1 class="loading-title">VALOR</h1>
+        <p class="loading-subtitle">Forging Legends</p>
+        
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loadingBar"></div>
         </div>
-        <ul class="mobile-nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#programs">Programs</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#cta">Join Now</a></li>
-        </ul>
-        <div class="mobile-nav-footer">
-            <a href="#cta" class="cta-button mobile-cta">JOIN THE RANKS</a>
-            <div class="mobile-social">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+        
+        <p class="loading-quote" id="loadingQuote">Discipline is the bridge between goals and accomplishment.</p>
     </div>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="images/valor-logo-white-trans.png" alt="VALOR" class="logo-img">
-            </a>
-            <ul class="nav-links">
+    <!-- YOUR EXISTING CONTENT (hidden until load) -->
+    <div style="opacity: 0;" id="mainContent">
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Mobile Sidebar Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-header">
+                <img src="images/valor-logo-white-trans.png" alt="VALOR" class="mobile-nav-logo">
+                <div class="mobile-close" id="mobileClose">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#programs">Programs</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#cta">Join Now</a></li>
             </ul>
-            <a href="#cta" class="cta-button">JOIN THE RANKS</a>
-            <div class="mobile-menu" id="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="premium-badge">PREMIUM</div>
-        <div class="hero-content">
-            <h1 class="display-font">VALOR IS FORGED IN THE FIRE OF DAILY DISCIPLINE.</h1>
-            <p>Your mind is your greatest weapon. Your body, its instrument. VALOR is the ecosystem where you track, train, and transcend.</p>
-            <div class="hero-buttons">
-                <a href="#cta" class="cta-button">JOIN THE RANKS</a>
-                <a href="#features" class="secondary-button">Learn More <i class="fas fa-arrow-down"></i></a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section class="social-proof">
-        <div class="container">
-            <h2 class="accent-font">As Featured In</h2>
-            <div class="logos">
-                <div class="logo-item">MEN'S HEALTH</div>
-                <div class="logo-item">FORBES</div>
-                <div class="logo-item">THE ATHLETIC</div>
-                <div class="logo-item">GQ</div>
-            </div>
-            <div class="testimonial">
-                "VALOR has redefined digital fitness. It's the operating system for the modern disciplined mind."
-                <div class="testimonial-author">- Jocko Willink</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pillars Section -->
-    <section class="pillars" id="features">
-        <div class="container">
-            <h2 class="section-title display-font">THE THREE PILLARS OF VALOR</h2>
-            <div class="pillars-container">
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="pillar-content">
-                        <h3 class="accent-font">TRACK WITH PURPOSE</h3>
-                        <p>Log workouts, monitor vitals, and analyze performance with Strava-level precision. Every data point is a step toward mastery.</p>
-                    </div>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <div class="pillar-content">
-                        <h3 class="accent-font">TRAIN WITH STRUCTURE</h3>
-                        <p>Access a library of "Playlists" from elite coaches. Hypertrophy, marathon training, stoic mindfulness—all modular, all adaptive.</p>
-                    </div>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="pillar-content">
-                        <h3 class="accent-font">TRANSCEND WITH THE TRIBE</h3>
-                        <p>Compete on leaderboards, share victories, and uphold streaks. Find accountability in a community built on honor, not hype.</p>
-                    </div>
+            <div class="mobile-nav-footer">
+                <a href="#cta" class="cta-button mobile-cta">JOIN THE RANKS</a>
+                <div class="mobile-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container features-container">
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="screen-content active" id="screen1">
-                        <h3 class="display-font">Workout Playlists</h3>
-                        <p>Curated training programs tailored to your goals with precision analytics and adaptive difficulty.</p>
-                    </div>
-                    <div class="screen-content" id="screen2">
-                        <h3 class="display-font">Performance Analytics</h3>
-                        <p>Track your progress with detailed metrics, insights, and personalized recommendations.</p>
-                    </div>
-                    <div class="screen-content" id="screen3">
-                        <h3 class="display-font">Community Feed</h3>
-                        <p>Connect with like-minded individuals on the same path. Share achievements and motivate each other.</p>
-                    </div>
-                    <div class="screen-nav">
-                        <div class="nav-dot active" data-screen="1"></div>
-                        <div class="nav-dot" data-screen="2"></div>
-                        <div class="nav-dot" data-screen="3"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="features-content">
-                <h2 class="display-font">THE TOOLS OF THE MODERN WARRIOR</h2>
-                <ul class="features-list">
-                    <li>
-                        <div class="feature-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h4>Gamified Progression</h4>
-                            <p>Build your streak, earn XP, and unlock badges that signify real achievement and dedication.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="feature-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h4>Stoic Principles</h4>
-                            <p>Daily meditations and challenges focused on resilience, virtue, and mental fortitude.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="feature-icon">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h4>Seamless Social</h4>
-                            <p>Connect, share, and compete without the noise. This is your inner circle of dedicated athletes.</p>
-                        </div>
-                    </li>
+        <!-- Header -->
+        <header id="header">
+            <div class="container nav-container">
+                <a href="#" class="logo">
+                    <img src="images/valor-logo-white-trans.png" alt="VALOR" class="logo-img">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
-                <a href="#cta" class="cta-button">GET EARLY ACCESS</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="cta">
-        <div class="container">
-            <div class="cta-container">
-                <div class="cta-left">
-                    <div>
-                        <h2 class="display-font">STOP SCROLLING. START BUILDING.</h2>
-                        <p>The path to self-mastery begins with a single decision. Yours is now.</p>
-                    </div>
+                <a href="#cta" class="cta-button">JOIN THE RANKS</a>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <div class="cta-right">
-                    <div class="cta-form">
-                        <div class="form-group">
-                            <label for="email" class="accent-font">ENTER YOUR EMAIL</label>
-                            <input type="email" id="email" placeholder="recruit@valor.com">
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="premium-badge">PREMIUM</div>
+            <div class="hero-content">
+                <h1 class="display-font">VALOR IS FORGED IN THE FIRE OF DAILY DISCIPLINE.</h1>
+                <p>Your mind is your greatest weapon. Your body, its instrument. VALOR is the ecosystem where you track, train, and transcend.</p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="cta-button">JOIN THE RANKS</a>
+                    <a href="#features" class="secondary-button">Learn More <i class="fas fa-arrow-down"></i></a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="social-proof">
+            <div class="container">
+                <h2 class="accent-font">As Featured In</h2>
+                <div class="logos">
+                    <div class="logo-item">MEN'S HEALTH</div>
+                    <div class="logo-item">FORBES</div>
+                    <div class="logo-item">THE ATHLETIC</div>
+                    <div class="logo-item">GQ</div>
+                </div>
+                <div class="testimonial">
+                    "VALOR has redefined digital fitness. It's the operating system for the modern disciplined mind."
+                    <div class="testimonial-author">- Jocko Willink</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pillars Section -->
+        <section class="pillars" id="features">
+            <div class="container">
+                <h2 class="section-title display-font">THE THREE PILLARS OF VALOR</h2>
+                <div class="pillars-container">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <button class="cta-button" style="width: 100%;">ENLIST NOW</button>
-                        <p class="form-note">Be the first to access. App Store & Google Play pre-registration available.</p>
+                        <div class="pillar-content">
+                            <h3 class="accent-font">TRACK WITH PURPOSE</h3>
+                            <p>Log workouts, monitor vitals, and analyze performance with Strava-level precision. Every data point is a step toward mastery.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3 class="accent-font">TRAIN WITH STRUCTURE</h3>
+                            <p>Access a library of "Playlists" from elite coaches. Hypertrophy, marathon training, stoic mindfulness—all modular, all adaptive.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="pillar-content">
+                            <h3 class="accent-font">TRANSCEND WITH THE TRIBE</h3>
+                            <p>Compete on leaderboards, share victories, and uphold streaks. Find accountability in a community built on honor, not hype.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <img src="images/valor-logo-white-trans.png" alt="VALOR" class="footer-logo-img">
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container features-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content active" id="screen1">
+                            <h3 class="display-font">Workout Playlists</h3>
+                            <p>Curated training programs tailored to your goals with precision analytics and adaptive difficulty.</p>
+                        </div>
+                        <div class="screen-content" id="screen2">
+                            <h3 class="display-font">Performance Analytics</h3>
+                            <p>Track your progress with detailed metrics, insights, and personalized recommendations.</p>
+                        </div>
+                        <div class="screen-content" id="screen3">
+                            <h3 class="display-font">Community Feed</h3>
+                            <p>Connect with like-minded individuals on the same path. Share achievements and motivate each other.</p>
+                        </div>
+                        <div class="screen-nav">
+                            <div class="nav-dot active" data-screen="1"></div>
+                            <div class="nav-dot" data-screen="2"></div>
+                            <div class="nav-dot" data-screen="3"></div>
+                        </div>
                     </div>
-                    <p style="color: var(--muted-steel); margin-top: 20px; line-height: 1.6;">© 2024 VALOR. FORGE YOUR LEGACY. Built for those who refuse to settle for mediocrity.</p>
                 </div>
-                <div class="footer-column">
-                    <h3 class="accent-font">Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Programs</a></li>
-                        <li><a href="#">Premium</a></li>
-                        <li><a href="#">Testimonials</a></li>
+                <div class="features-content">
+                    <h2 class="display-font">THE TOOLS OF THE MODERN WARRIOR</h2>
+                    <ul class="features-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Gamified Progression</h4>
+                                <p>Build your streak, earn XP, and unlock badges that signify real achievement and dedication.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Stoic Principles</h4>
+                                <p>Daily meditations and challenges focused on resilience, virtue, and mental fortitude.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Seamless Social</h4>
+                                <p>Connect, share, and compete without the noise. This is your inner circle of dedicated athletes.</p>
+                            </div>
+                        </li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="accent-font">Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="accent-font">Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookies</a></li>
-                    </ul>
+                    <a href="#cta" class="cta-button">GET EARLY ACCESS</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="app-badges">
-                    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="app-badge">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="app-badge">
-                </div>
-                <div class="copyright">
-                    &copy; 2025 VALOR. All rights reserved.
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="cta">
+            <div class="container">
+                <div class="cta-container">
+                    <div class="cta-left">
+                        <div>
+                            <h2 class="display-font">STOP SCROLLING. START BUILDING.</h2>
+                            <p>The path to self-mastery begins with a single decision. Yours is now.</p>
+                        </div>
+                    </div>
+                    <div class="cta-right">
+                        <div class="cta-form">
+                            <div class="form-group">
+                                <label for="email" class="accent-font">ENTER YOUR EMAIL</label>
+                                <input type="email" id="email" placeholder="recruit@valor.com">
+                            </div>
+                            <button class="cta-button" style="width: 100%;">ENLIST NOW</button>
+                            <p class="form-note">Be the first to access. App Store & Google Play pre-registration available.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-column">
+                        <div class="footer-logo">
+                            <img src="images/valor-logo-white-trans.png" alt="VALOR" class="footer-logo-img">
+                        </div>
+                        <p style="color: var(--muted-steel); margin-top: 20px; line-height: 1.6;">© 2024 VALOR. FORGE YOUR LEGACY. Built for those who refuse to settle for mediocrity.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="accent-font">Product</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Programs</a></li>
+                            <li><a href="#">Premium</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="accent-font">Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="accent-font">Legal</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="app-badges">
+                        <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="app-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="app-badge">
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 VALOR. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
+        // === BADASS LOADING SCRIPT ===
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingBar = document.getElementById('loadingBar');
+        const loadingPercentage = document.getElementById('loadingPercentage');
+        const loadingQuote = document.getElementById('loadingQuote');
+        const mainContent = document.getElementById('mainContent');
+        const particlesContainer = document.getElementById('particlesContainer');
+
+        // Epic loading quotes
+        const loadingQuotes = [
+            "Discipline is the bridge between goals and accomplishment.",
+            "The harder the battle, the sweeter the victory.",
+            "Strength does not come from winning. Your struggles develop your strengths.",
+            "The only bad workout is the one that didn't happen.",
+            "Today I will do what others won't, so tomorrow I can accomplish what others can't.",
+            "Your body can stand almost anything. It's your mind that you have to convince.",
+            "Don't stop when you're tired. Stop when you're done.",
+            "The pain you feel today will be the strength you feel tomorrow.",
+            "Great things never come from comfort zones.",
+            "Wake up with determination. Go to bed with satisfaction."
+        ];
+
+        let currentQuoteIndex = 0;
+        let lastQuoteChangeAt = 0;
+
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Change quote with smooth transition
+        function changeQuote() {
+            loadingQuote.style.opacity = '0';
+            loadingQuote.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                currentQuoteIndex = (currentQuoteIndex + 1) % loadingQuotes.length;
+                loadingQuote.textContent = loadingQuotes[currentQuoteIndex];
+                loadingQuote.style.opacity = '1';
+                loadingQuote.style.transform = 'translateY(0)';
+                lastQuoteChangeAt = Date.now();
+            }, 300);
+        }
+
+        // Simulate loading progress
+        function simulateLoading() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 8 + 2;
+                if (progress > 100) progress = 100;
+                
+                loadingBar.style.width = progress + '%';
+                loadingPercentage.textContent = Math.floor(progress) + '%';
+                
+                // Only change quote if enough time has passed since last change AND at milestone
+                const currentTime = Date.now();
+                const timeSinceLastChange = currentTime - lastQuoteChangeAt;
+                const milestones = [25, 50, 75];
+                const atMilestone = milestones.some(milestone => 
+                    progress >= milestone && progress < milestone + 5
+                );
+                
+                if (atMilestone && timeSinceLastChange > 2000) { // Wait at least 2 seconds between quotes
+                    changeQuote();
+                }
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(completeLoading, 800);
+                }
+            }, 250);
+        }
+
+        // Complete loading and reveal main content
+        function completeLoading() {
+            loadingScreen.classList.add('loaded');
+            mainContent.style.opacity = '1';
+            
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }
+
+        // Start the epic loading experience
+        createParticles();
+        lastQuoteChangeAt = Date.now(); // Initialize timestamp
+        simulateLoading();  
+              
+        // === YOUR EXISTING JAVASCRIPT ===
         // Mobile menu functionality
-// Mobile menu functionality
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileNav = document.getElementById('mobileNav');
-const mobileClose = document.getElementById('mobileClose');
-const overlay = document.getElementById('overlay');
-const body = document.body;
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileClose = document.getElementById('mobileClose');
+        const overlay = document.getElementById('overlay');
 
-function openMobileMenu() {
-    mobileNav.classList.add('open');
-    overlay.classList.add('active');
-}
+        function openMobileMenu() {
+            mobileNav.classList.add('open');
+            overlay.classList.add('active');
+        }
 
-function closeMobileMenu() {
-    mobileNav.classList.remove('open');
-    overlay.classList.remove('active');
-}
+        function closeMobileMenu() {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('active');
+        }
 
-function toggleMobileMenu() {
-    if (mobileNav.classList.contains('open')) {
-        closeMobileMenu();
-    } else {
-        openMobileMenu();
-    }
-}
+        function toggleMobileMenu() {
+            if (mobileNav.classList.contains('open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
 
-mobileMenu.addEventListener('click', toggleMobileMenu); // Changed to toggle
-mobileClose.addEventListener('click', closeMobileMenu);
-overlay.addEventListener('click', closeMobileMenu);
+        mobileMenu.addEventListener('click', toggleMobileMenu);
+        mobileClose.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
 
-// Close menu when clicking on a link
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-mobileNavLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+        // Close menu when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
